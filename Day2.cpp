@@ -1,4 +1,4 @@
-961. N-Repeated Element in Size 2N Array
+//961. N-Repeated Element in Size 2N Array
 
 class Solution {
 public:

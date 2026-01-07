@@ -1,2 +1,26 @@
 1339. Maximum Product of Splitted Binary Tree
 
+class Solution {
+public:
+    long long maxprod=0;
+    long long totalsum=0;
+    long long  MOD=1e9+7;
+    long long totSum(TreeNode* root){
+        if (!root) return 0;
+        return root->val+totSum(root->left)+totSum(root->right);
+    }
+    long long dfs(TreeNode* root){
+        if(!root) return 0;
+        long long left=dfs(root->left);
+        long long right=dfs(root->right);
+        long long subSum=root->val+left+right;
+        long long product=subSum*(totalsum-subSum);
+        maxprod=max(maxprod,product);
+        return subSum;
+    }
+    int maxProduct(TreeNode* root) {
+        totalsum=totSum(root);
+        dfs(root);
+        return maxprod%MOD;
+    }
+};
